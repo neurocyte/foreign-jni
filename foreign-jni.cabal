@@ -1,0 +1,23 @@
+name: foreign-jni
+version: 0.1.0.0
+synopsis: Haskell binding library for working with the Java Native Interface
+-- description:
+homepage: https://github.com/neurocyte/foreign-jni
+license: MIT
+--license-file: LICENSE
+author: CJ van den Berg
+maintainer: cj@vdbonline.com
+-- copyright:
+category: Development
+build-type: Simple
+cabal-version: >=1.8
+
+source-repository head
+  type: git
+  location: https://github.com/neurocyte/foreign-jni.git
+
+library
+  exposed-modules: Foreign.JNI Foreign.JNI.Lookup
+  ghc-options: -Wall -O2
+  hs-source-dirs: src
+  build-depends: base, transformers, mtl, text
