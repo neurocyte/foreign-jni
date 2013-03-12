@@ -1,14 +1,26 @@
 name: foreign-jni
 version: 0.1.0.0
-synopsis: Haskell binding library for working with the Java Native Interface
--- description:
+synopsis: A binding to the Java Native Interface (JNI)
+description:
+  .
+  Haskell bindings to the Java Native Interface. Ideal for writing
+  Java native methods in Haskell.
+  .
+  If the JNI C header files are not in your C compiler's include path,
+  you should export $JAVA_HOME before running cabal install or
+  configure.
+  .
+  If you use functions in Foreign.JNI.Lookup you must first call
+  either hs_set_java_vm from C (probably in JNI_OnLoad) or setJavaVM
+  from Haskell.
+  .
 homepage: https://github.com/neurocyte/foreign-jni
-license: MIT
---license-file: LICENSE
-author: CJ van den Berg
+license: BSD3
+license-file: LICENSE
+author: C. J. van den Berg
 maintainer: cj@vdbonline.com
--- copyright:
-category: Development
+copyright: 2013 C. J. van den Berg
+category: Foreign
 build-type: Configure
 cabal-version: >=1.8
 
@@ -17,7 +29,9 @@ source-repository head
   location: https://github.com/neurocyte/foreign-jni.git
 
 library
-  exposed-modules: Foreign.JNI Foreign.JNI.Lookup
+  exposed-modules:
+    Foreign.JNI
+    Foreign.JNI.Lookup
   ghc-options: -Wall -O2
   hs-source-dirs: src
-  build-depends: base, transformers, mtl, text
+  build-depends: base < 4.8, transformers, mtl, text
