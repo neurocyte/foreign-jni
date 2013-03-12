@@ -9,7 +9,7 @@ author: CJ van den Berg
 maintainer: cj@vdbonline.com
 -- copyright:
 category: Development
-build-type: Simple
+build-type: Configure
 cabal-version: >=1.8
 
 source-repository head

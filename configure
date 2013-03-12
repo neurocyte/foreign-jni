@@ -1,0 +1,21 @@
+#!/bin/sh
+set -e
+unset GCC
+
+while [ $# -gt 0 ] ; do
+    if [ "${1:0:11}" = "--with-gcc=" ] ; then
+        GCC=${1:11}
+    fi
+    shift
+done
+
+rm -f foreign-jni.buildinfo
+
+if ! echo '#include <jni.h>' | $GCC -E - &> /dev/null ; then
+    if ! echo '#include <jni.h>' | $GCC -I${JAVA_HOME}/include -I${JAVA_HOME}/include/linux -E - &> /dev/null ; then
+        echo "Include file jni.h not found! Please set $JAVA_HOME or install jni.h in your compiler include path."
+        exit 1
+    else
+        echo cc-options: -I${JAVA_HOME}/include -I${JAVA_HOME}/include/linux >> foreign-jni.buildinfo
+    fi
+fi
