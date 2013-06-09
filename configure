@@ -12,10 +12,11 @@ done
 rm -f foreign-jni.buildinfo
 
 if ! echo '#include <jni.h>' | $GCC -E - &> /dev/null ; then
-    if ! echo '#include <jni.h>' | $GCC -I${JAVA_HOME}/include -I${JAVA_HOME}/include/linux -E - &> /dev/null ; then
+    JNI_GCC_INCLUDES=$"-I${JAVA_HOME}/include/ -I${JAVA_HOME}/include/linux/ -I${JAVA_HOME}/include/darwin/"
+    if ! echo '#include <jni.h>' | $GCC ${JNI_GCC_INCLUDES} -E - &> /dev/null ; then
         echo "Include file jni.h not found! Please set $JAVA_HOME or install jni.h in your compiler include path."
         exit 1
     else
-        echo cc-options: -I${JAVA_HOME}/include -I${JAVA_HOME}/include/linux >> foreign-jni.buildinfo
+        echo cc-options: ${JNI_GCC_INCLUDES} >> foreign-jni.buildinfo
     fi
 fi
