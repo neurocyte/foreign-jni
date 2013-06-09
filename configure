@@ -19,6 +19,9 @@ if ! echo '#include <jni.h>' | $GCC -E - &> /dev/null ; then
     if [ -d "${JAVA_HOME}/include/darwin" ] ; then
         JNI_GCC_INCLUDES="$JNI_GCC_INCLUDES -I${JAVA_HOME}/include/darwin/"
     fi
+    if [ -d "${JAVA_HOME}/include/win32" ] ; then
+        JNI_GCC_INCLUDES="$JNI_GCC_INCLUDES -I${JAVA_HOME}/include/win32/"
+    fi
     if ! echo '#include <jni.h>' | $GCC ${JNI_GCC_INCLUDES} -E - &> /dev/null ; then
         echo "Include file jni.h not found! Please set $JAVA_HOME or install jni.h in your compiler include path."
         exit 1
