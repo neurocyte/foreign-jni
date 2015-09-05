@@ -393,7 +393,7 @@ type JavaVM = Ptr (Ptr JNIInvokeInterface_)
 
 newtype JNI a = JNI_ {
   runJNI_ :: ReaderT JNIEnv IO a
-} deriving (Monad, MonadIO, MonadReader JNIEnv)
+} deriving (Functor, Applicative, Monad, MonadIO, MonadReader JNIEnv)
 
 runJNI :: JNIEnv -> JNI a -> IO a
 runJNI e k = runReaderT (runJNI_ k) e
