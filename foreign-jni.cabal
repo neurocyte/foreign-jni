@@ -34,4 +34,4 @@ library
     Foreign.JNI.Lookup
   ghc-options: -Wall -O2
   hs-source-dirs: src
-  build-depends: base < 4.8, transformers, mtl, text
+  build-depends: base < 4.9, transformers, mtl, text
